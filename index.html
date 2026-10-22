@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secure QR Code Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔐 Secure QR Code Generator</h1>
+      <p>Create secure QR codes for URLs, text, email, and WiFi</p>
+    </header>
+
+    <main class="generator">
+      <div class="input-section">
+        <div class="tabs">
+          <button type="button" class="tab active" data-type="url">URL</button>
+          <button type="button" class="tab" data-type="text">Text</button>
+          <button type="button" class="tab" data-type="email">Email</button>
+          <button type="button" class="tab" data-type="wifi">WiFi</button>
+        </div>
+
+        <form id="qr-form">
+          <div id="url-inputs" class="input-group">
+            <label for="url-input">Website URL</label>
+            <input type="url" id="url-input" placeholder="https://example.com" />
+          </div>
+
+          <div id="text-inputs" class="input-group hidden">
+            <label for="text-input">Text Content</label>
+            <textarea id="text-input" placeholder="Enter your text here..." rows="4"></textarea>
+          </div>
+
+          <div id="email-inputs" class="input-group hidden">
+            <label for="email-input">Email Address</label>
+            <input type="email" id="email-input" placeholder="name@example.com" />
+            <label for="email-subject">Subject (optional)</label>
+            <input type="text" id="email-subject" placeholder="Email subject" />
+          </div>
+
+          <div id="wifi-inputs" class="input-group hidden">
+            <label for="wifi-ssid">Network Name (SSID)</label>
+            <input type="text" id="wifi-ssid" placeholder="Your WiFi name" />
+            <label for="wifi-password">Password</label>
+            <input type="text" id="wifi-password" placeholder="WiFi password" />
+            <label for="wifi-encryption">Encryption</label>
+            <select id="wifi-encryption">
+              <option value="WPA">WPA/WPA2</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass">No Password</option>
+            </select>
+          </div>
+
+          <div class="options">
+            <div>
+              <label for="qr-size">QR Code Size</label>
+              <select id="qr-size">
+                <option value="150">150x150</option>
+                <option value="200" selected>200x200</option>
+                <option value="250">250x250</option>
+                <option value="300">300x300</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="qr-color">Foreground Color</label>
+              <input type="color" id="qr-color" value="#000000" />
+            </div>
+
+            <div>
+              <label for="qr-bg-color">Background Color</label>
+              <input type="color" id="qr-bg-color" value="#ffffff" />
+            </div>
+          </div>
+
+          <button type="submit" class="generate-btn">Generate QR Code</button>
+        </form>
+      </div>
+
+      <div class="output-section">
+        <div id="qr-output" class="qr-output hidden">
+          <div id="qr-code-container">
+             <!-- Render destination node wrapper target directly -->
+             <div id="qr-code-canvas"></div>
+          </div>
+          <button id="download-btn" type="button" class="download-btn">Download PNG</button>
+        </div>
+        <div id="qr-placeholder" class="qr-placeholder">
+          <p>Your QR code will appear here</p>
+        </div>
+      </div>
+    </main>
+
+    <section class="history-section">
+      <div class="history-header">
+        <h2>Recent QR Codes</h2>
+        <button id="clear-history-btn" type="button" class="clear-btn">Clear All</button>
+      </div>
+      <div id="history-list" class="history-list">
+        <!-- History items dynamically load here -->
+      </div>
+    </section>
+  </div>
+
+  <!-- ULTRA-STABLE ZERO DEPENDENCY INTEGRATION HOST -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
